@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Curricular MI&T</title>
+    <title>Dashboard Curricular Dinámico (V2)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,158 +26,112 @@
         
         select { 
             padding: 10px 15px; border-radius: 10px; border: 1px solid #e2e8f0; 
-            font-family: inherit; font-size: 0.9rem; color: var(--text); outline: none;
-            background: #f8fafc; cursor: pointer; transition: border 0.2s;
+            font-family: inherit; font-size: 0.9rem; background: #f8fafc; cursor: pointer;
         }
-        select:focus { border-color: var(--accent); }
 
-        /* Toggle Switch Estilizado */
         .switch { position: relative; display: inline-block; width: 48px; height: 24px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { 
-            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; 
-            background-color: #cbd5e1; transition: .4s; border-radius: 34px; 
-        }
-        .slider:before { 
-            position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; 
-            background-color: white; transition: .4s; border-radius: 50%; 
-        }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: var(--accent); }
         input:checked + .slider:before { transform: translateX(24px); }
 
-        .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 25px; min-height: 70vh; }
+        .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 25px; min-height: 75vh; }
         .semesters-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         
-        .semester-col { 
-            background: rgba(255,255,255,0.5); border: 1px solid #e2e8f0; 
-            padding: 20px; border-radius: 16px; transition: all 0.4s ease; 
-        }
+        .semester-col { background: rgba(255,255,255,0.5); border: 1px solid #e2e8f0; padding: 20px; border-radius: 16px; transition: all 0.4s ease; }
         .semester-col.disabled { opacity: 0.15; filter: grayscale(1); pointer-events: none; }
-        .semester-col h3 { margin: 0 0 20px 0; font-size: 1rem; text-align: center; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+        .semester-col h3 { margin: 0 0 20px 0; font-size: 0.9rem; text-align: center; color: var(--muted); }
 
         .course-card { 
             background: var(--card); padding: 15px; border-radius: 12px; margin-bottom: 12px; 
             box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 6px solid #ccc;
-            transition: transform 0.2s;
         }
-        .course-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.08); }
-        .course-card strong { display: block; font-size: 0.9rem; color: var(--primary); margin-bottom: 5px; }
-        .course-card span { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+        .course-card strong { display: block; font-size: 0.85rem; color: var(--primary); margin-bottom: 4px; }
+        .course-card span { font-size: 0.7rem; color: var(--muted); }
 
-        /* RA Panel */
-        .ra-panel { 
-            background: var(--card); padding: 25px; border-radius: 16px; 
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); 
-            height: 600px; display: flex; flex-direction: column; position: sticky; top: 25px;
-        }
+        .ra-panel { background: var(--card); padding: 25px; border-radius: 16px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); height: 600px; display: flex; flex-direction: column; position: sticky; top: 25px; }
         #viz-area { flex-grow: 1; display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
         
-        .ra-block { 
-            border-radius: 10px; display: flex; flex-direction: column; justify-content: center; 
-            align-items: center; color: white; text-align: center; cursor: pointer; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden;
-        }
+        .ra-block { border-radius: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; cursor: pointer; transition: 0.3s; overflow: hidden; }
         .ra-block:hover { filter: brightness(1.1); transform: scale(1.02); }
-        .ra-block .num { font-size: 1.5rem; font-weight: 700; line-height: 1; }
-        .ra-block .label { font-size: 0.7rem; font-weight: 600; margin-top: 4px; padding: 0 10px; }
+        .ra-block .num { font-size: 1.3rem; font-weight: 700; }
+        .ra-block .label { font-size: 0.65rem; font-weight: 600; padding: 0 10px; text-transform: uppercase; }
 
-        /* Tooltip */
-        #tooltip { 
-            position: absolute; background: var(--primary); color: white; padding: 12px 16px; 
-            border-radius: 10px; font-size: 0.8rem; display: none; pointer-events: none; 
-            z-index: 9999; max-width: 250px; line-height: 1.4; box-shadow: 0 10px 15px rgba(0,0,0,0.2);
-        }
+        #tooltip { position: absolute; background: var(--primary); color: white; padding: 12px; border-radius: 8px; font-size: 0.8rem; display: none; pointer-events: none; z-index: 9999; max-width: 250px; box-shadow: 0 10px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="display:flex; align-items:center; gap:15px;">
-        <div style="width:12px; height:30px; background:var(--accent); border-radius:4px;"></div>
-        <h2 style="margin:0; font-size:1.4rem; font-weight:700;">Dashboard Curricular</h2>
-    </div>
+    <h2 style="margin:0; font-size:1.3rem;">Visualizador Curricular Dinámico</h2>
     <div class="controls">
         <div class="control-group">
-            <label>Especialización</label>
-            <select id="espSelect"><option>Cargando datos...</option></select>
+            <label>Programa</label>
+            <select id="espSelect"><option>Cargando matriz...</option></select>
         </div>
         <div class="control-group">
-            <span>Modo Maestría</span>
-            <label class="switch">
-                <input type="checkbox" id="maestriaToggle">
-                <span class="slider"></span>
-            </label>
+            <span>Maestría</span>
+            <label class="switch"><input type="checkbox" id="maestriaToggle"><span class="slider"></span></label>
         </div>
     </div>
 </header>
 
 <div class="main-layout">
     <div class="semesters-container">
-        <div class="semester-col" id="sem-1"><h3>Semestre 1</h3><div class="list"></div></div>
-        <div class="semester-col" id="sem-2"><h3>Semestre 2</h3><div class="list"></div></div>
-        <div class="semester-col" id="sem-3"><h3>Semestre 3</h3><div class="list"></div></div>
+        <div class="semester-col" id="sem-1"><h3>SEMESTRE 1</h3><div class="list"></div></div>
+        <div class="semester-col" id="sem-2"><h3>SEMESTRE 2</h3><div class="list"></div></div>
+        <div class="semester-col" id="sem-3"><h3>SEMESTRE 3</h3><div class="list"></div></div>
     </div>
-
     <div class="ra-panel">
-        <h4 style="margin:0; text-align:center; color:var(--muted); font-size:0.9rem;">APORTE POR RESULTADO (RA)</h4>
+        <h4 style="margin:0; text-align:center; color:var(--muted); font-size:0.8rem; letter-spacing:1px;">RESULTADOS DE APRENDIZAJE</h4>
         <div id="viz-area"></div>
     </div>
 </div>
-
 <div id="tooltip"></div>
 
 <script>
-    // Configuración de colores basada en los RA típicos del programa
-    const raColors = {
-        "Entender": "#3b82f6", "Construir": "#10b981", "Escalar": "#f59e0b",
-        "Liderar y Movilizar": "#ef4444", "Estrategia": "#8b5cf6",
-        "Comunicación": "#06b6d4", "Diseño": "#ec4899", "Integrar (C+L)": "#6366f1",
-        "Integrar (E+C)": "#14b8a6", "Convergencia (Todos)": "#64748b"
-    };
-
     let fullData = [];
+    let colorScale;
 
-    // Carga de matriz.csv
     d3.csv("matriz.csv").then(data => {
-        // Limpiar espacios en los encabezados y datos
+        // 1. Limpieza universal de datos
         fullData = data.map(d => {
             let clean = {};
             Object.keys(d).forEach(k => clean[k.trim()] = d[k] ? d[k].trim() : "");
             return clean;
         });
 
-        // Poblar select con especializaciones
+        // 2. Generación dinámica de colores para CUALQUIER cantidad de RA
+        const uniqueRAs = [...new Set(fullData.map(d => d["Titulo(RA)"]))].filter(d => d !== "");
+        colorScale = d3.scaleOrdinal()
+            .domain(uniqueRAs)
+            .range(d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), uniqueRAs.length).reverse());
+
+        // 3. Población dinámica de Programas (Solo Especializaciones)
         const progs = new Set();
         fullData.forEach(d => {
-            if (d.Programa) {
-                d.Programa.split(',').forEach(p => {
-                    let name = p.trim();
-                    if (name.toLowerCase().includes("especialización")) progs.add(name);
-                });
-            }
+            if (d.Programa) d.Programa.split(',').forEach(p => {
+                let name = p.trim();
+                if (name.toLowerCase().includes("especialización")) progs.add(name);
+            });
         });
 
         const select = d3.select("#espSelect").html("");
         Array.from(progs).sort().forEach(p => select.append("option").text(p).attr("value", p));
 
-        // Eventos
         d3.select("#espSelect").on("change", update);
         d3.select("#maestriaToggle").on("change", update);
 
         update();
-    }).catch(err => {
-        console.error("Error cargando CSV:", err);
-        d3.select("#espSelect").html("<option>Error al cargar archivo</option>");
     });
 
     function update() {
         const selectedEsp = d3.select("#espSelect").property("value");
         const maestriaActive = d3.select("#maestriaToggle").property("checked");
 
-        // Filtrar cursos de la especialización
         let filtered = fullData.filter(d => d.Programa.includes(selectedEsp));
 
-        // Inyectar semestre 3 de Maestría si el toggle está activo
         if (maestriaActive) {
             const mCursos = fullData.filter(d => 
                 d.Programa.toLowerCase().includes("maestría") && +d.Semestre === 3
@@ -185,62 +139,48 @@
             filtered = [...filtered, ...mCursos];
         }
 
-        // Estado visual del semestre 3
         d3.select("#sem-3").classed("disabled", !maestriaActive);
 
-        // Renderizar Cursos en las 3 columnas
         [1, 2, 3].forEach(s => {
             const container = d3.select(`#sem-${s} .list`).html("");
             filtered.filter(d => +d.Semestre === s).forEach(c => {
-                const raTitle = c["Titulo(RA)"];
-                const color = raColors[raTitle] || "#cbd5e1";
-                
+                const ra = c["Titulo(RA)"];
                 container.append("div")
                     .attr("class", "course-card")
-                    .style("border-left-color", color)
-                    .html(`<strong>${c["Curso"]}</strong><span>${raTitle}</span>`);
+                    .style("border-left-color", colorScale(ra))
+                    .html(`<strong>${c["Curso"]}</strong><span>${ra}</span>`);
             });
         });
 
-        renderRAVisuals(filtered);
+        renderViz(filtered);
     }
 
-    function renderRAVisuals(data) {
+    function renderViz(data) {
         const wrapper = d3.select("#viz-area").html("");
-        
-        // Agrupar por Título(RA) y guardar el Detalle(RA)
-        const raGroups = d3.groups(data, d => d["Titulo(RA)"])
-            .filter(g => g[0] !== ""); // Ignorar vacíos
-
-        const totalCursos = d3.sum(raGroups, g => g[1].length);
+        const raGroups = d3.groups(data, d => d["Titulo(RA)"]).filter(g => g[0] !== "");
+        const total = d3.sum(raGroups, g => g[1].length);
 
         raGroups.sort((a, b) => b[1].length - a[1].length).forEach(group => {
             const [title, courses] = group;
             const count = courses.length;
-            const detail = courses[0]["Detalle(RA)"]; // Tomar el detalle del primer curso que lo mencione
-            const heightPerc = (count / totalCursos) * 100;
-            const color = raColors[title] || "#94a3b8";
+            const detail = courses[0]["Detalle(RA)"] || "Sin detalle disponible";
+            const h = (count / total) * 100;
 
             const block = wrapper.append("div")
                 .attr("class", "ra-block")
-                .style("height", `${heightPerc}%`)
-                .style("background-color", color)
+                .style("height", `${h}%`)
+                .style("background-color", colorScale(title))
                 .on("mouseover", (e) => {
-                    d3.select("#tooltip")
-                        .style("display", "block")
-                        .html(`<strong>${title}</strong><br><div style="margin-top:5px; font-weight:400; opacity:0.9">${detail}</div>`);
+                    d3.select("#tooltip").style("display", "block")
+                      .html(`<strong>${title}</strong><br><small>${detail}</small>`);
                 })
                 .on("mousemove", (e) => {
-                    d3.select("#tooltip")
-                        .style("left", (e.pageX + 15) + "px")
-                        .style("top", (e.pageY - 15) + "px");
+                    d3.select("#tooltip").style("left", (e.pageX + 15) + "px").style("top", (e.pageY - 15) + "px");
                 })
                 .on("mouseout", () => d3.select("#tooltip").style("display", "none"));
 
             block.append("div").attr("class", "num").text(count);
-            if (heightPerc > 10) {
-                block.append("div").attr("class", "label").text(title);
-            }
+            if (h > 8) block.append("div").attr("class", "label").text(title);
         });
     }
 </script>
