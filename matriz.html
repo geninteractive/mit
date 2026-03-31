@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Curricular Dinámico</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        :root { --bg: #f0f2f5; --accent: #1a73e8; }
+        body { font-family: sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        .header { display: flex; justify-content: space-between; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+        .semesters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .semester-box { background: #e2e8f0; padding: 15px; border-radius: 8px; min-height: 400px; }
+        .course-card { background: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border-left: 5px solid; font-size: 0.9em; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .ra-container { background: white; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; gap: 10px; height: 600px; }
+        .ra-block { color: white; padding: 10px; border-radius: 5px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: help; transition: 0.2s; }
+        .ra-block:hover { opacity: 0.8; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h2>Visualización de Resultados de Aprendizaje</h2>
+    <select id="progSelect"><option value="">Cargando programas...</option></select>
+</div>
+
+<div class="grid">
+    <div class="semesters">
+        <div class="semester-box" id="sem1"><h3>Semestre 1</h3><div class="list"></div></div>
+        <div class="semester-box" id="sem2"><h3>Semestre 2</h3><div class="list"></div></div>
+        <div class="semester-box" id="sem3"><h3>Semestre 3</h3><div class="list"></div></div>
+    </div>
+    <div class="ra-container" id="raBlocks">
+        <h3 style="text-align:center">Distribución RA</h3>
+        <div id="viz" style="flex-grow:1; display:flex; flex-direction:column; gap:8px;"></div>
+    </div>
+</div>
+
+<script>
+const colors = {
+    "Entender": "#4285F4", "Construir": "#34A853", "Escalar": "#FBBC05",
+    "Liderar y Movilizar": "#EA4335", "Estrategia": "#8E24AA",
+    "Comunicación": "#00ACC1", "Diseño": "#F06292", "Convergencia (Todos)": "#607D8B"
+};
+
+// Carga del archivo matriz.csv
+d3.csv("matriz.csv").then(data => {
+    // 1. Extraer programas únicos del CSV [cite: 1, 3]
+    let progs = new Set();
+    data.forEach(d => {
+        d.Programa.split(',').forEach(p => progs.add(p.trim()));
+    });
+
+    const select = d3.select("#progSelect");
+    select.html(""); 
+    Array.from(progs).forEach(p => select.append("option").text(p).attr("value", p));
+
+    function update() {
+        const val = select.property("value");
+        const isMaestria = val.toLowerCase().includes("maestría");
+        
+        // Filtrar datos según programa seleccionado [cite: 1, 2]
+        const filtered = data.filter(d => d.Programa.includes(val));
+
+        // Control del Semestre 3
+        d3.select("#sem3").classed("hidden", !isMaestria);
+
+        // Renderizar Cursos
+        [1, 2, 3].forEach(s => {
+            const container = d3.select(`#sem${s} .list`).html("");
+            filtered.filter(d => +d.Semestre === s).forEach(c => {
+                const ra = c["Competencia Principal (RA)"];
+                container.append("div")
+                    .attr("class", "course-card")
+                    .style("border-left-color", colors[ra] || "#ccc")
+                    .html(`<strong>${c["Nombre del Curso"]}</strong><br><small>${ra}</small>`);
+            });
+        });
+
+        // Renderizar Bloques RA Dinámicos
+        const raCounts = d3.rollups(filtered, v => v.length, d => d["Competencia Principal (RA)"]);
+        const total = d3.sum(raCounts, d => d[1]);
+        const viz = d3.select("#viz").html("");
+
+        raCounts.forEach(ra => {
+            const height = (ra[1] / total) * 100;
+            viz.append("div")
+                .attr("class", "ra-block")
+                .style("height", `${height}%`)
+                .style("background", colors[ra[0]] || "#999")
+                .attr("title", `RA: ${ra[0]} - Cursos: ${ra[1]}`)
+                .html(`<strong>${ra[1]}</strong><small>${ra[0]}</small>`);
+        });
+    }
+
+    select.on("change", update);
+    update();
+
+}).catch(err => {
+    console.error("Error cargando el CSV. Asegúrate de usar un servidor local (Live Server).", err);
+});
+</script>
+</body>
+</html>
