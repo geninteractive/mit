@@ -10,206 +10,50 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <style>
         :root {
-            --primary: #0f172a;
-            --accent: #3b82f6;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #1e293b;
+            --primary: #0f172a; --accent: #3b82f6; --bg: #f8fafc;
+            --card: #ffffff; --text: #1e293b;
         }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 30px;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding: 20px 30px;
-            background: var(--card);
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .controls {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .control-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        select {
-            padding: 10px 16px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            font-family: inherit;
-            font-size: 0.95rem;
-            color: var(--text);
-            cursor: pointer;
-        }
-
-        /* Toggle Switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 26px;
-        }
-
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 15px 25px; background: var(--card); border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .controls { display: flex; align-items: center; gap: 30px; }
+        .control-group { display: flex; align-items: center; gap: 10px; }
+        select { padding: 8px 12px; border-radius: 6px; border: 1px solid #e2e8f0; font-family: inherit; cursor: pointer; }
+        
+        /* Toggle */
+        .switch { position: relative; display: inline-block; width: 44px; height: 22px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #cbd5e1;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px; width: 18px;
-            left: 4px; bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: var(--accent); }
-        input:checked + .slider:before { transform: translateX(24px); }
+        input:checked + .slider:before { transform: translateX(22px); }
 
-        .main-layout {
-            display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 25px;
-            align-items: start;
-        }
+        .main-layout { display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+        .semesters-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .semester-col { background: #f1f5f9; padding: 15px; border-radius: 10px; min-height: 500px; transition: opacity 0.3s; }
+        .semester-col.disabled { opacity: 0.25; pointer-events: none; }
+        .course-card { background: var(--card); padding: 12px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 6px solid #ccc; font-size: 0.85rem; }
+        
+        .ra-panel { background: var(--card); padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); height: 550px; display: flex; flex-direction: column; }
+        #viz-area { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; margin-top: 15px; }
+        .ra-block { border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; cursor: help; overflow: hidden; }
+        .ra-block .num { font-size: 1.2rem; font-weight: 700; }
+        .ra-block .label { font-size: 0.65rem; font-weight: 500; padding: 0 4px; }
 
-        .semesters-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .semester-col {
-            background: #f1f5f9;
-            padding: 20px;
-            border-radius: 12px;
-            min-height: 500px;
-            transition: all 0.3s ease;
-        }
-
-        .semester-col.disabled {
-            opacity: 0.3;
-            filter: grayscale(1);
-        }
-
-        .semester-col h3 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            color: var(--primary);
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 10px;
-            text-align: center;
-        }
-
-        .course-card {
-            background: var(--card);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-            border-left: 6px solid #cbd5e1;
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
-
-        .course-card strong {
-            display: block;
-            margin-bottom: 4px;
-            color: var(--primary);
-        }
-
-        /* Lado Derecho: RA Dinámicos */
-        .ra-panel {
-            background: var(--card);
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #viz-area {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .ra-block {
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            transition: transform 0.2s;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .ra-block:hover { transform: scale(1.03); }
-        .ra-block .num { font-size: 1.4rem; font-weight: 700; }
-        .ra-block .label { font-size: 0.7rem; font-weight: 500; text-transform: uppercase; }
-
-        /* Tooltip */
-        #tooltip {
-            position: absolute;
-            background: var(--primary);
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            display: none;
-            pointer-events: none;
-            z-index: 1000;
-            max-width: 200px;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
-        }
+        #tooltip { position: absolute; background: #1e293b; color: white; padding: 10px; border-radius: 6px; font-size: 0.75rem; display: none; pointer-events: none; z-index: 1000; max-width: 180px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h2 style="margin:0; font-weight:700;">Dashboard de Currículo</h2>
+    <h3 style="margin:0;">Currículo MI&T</h3>
     <div class="controls">
         <div class="control-group">
-            <label></label>
-            <select id="espSelect"></select>
+            <label>Especialización:</label>
+            <select id="espSelect"><option>Cargando...</option></select>
         </div>
         <div class="control-group">
-            <span>¿Maestría?</span>
-            <label class="switch">
-                <input type="checkbox" id="maestriaToggle">
-                <span class="slider"></span>
-            </label>
+            <span>Maestría</span>
+            <label class="switch"><input type="checkbox" id="maestriaToggle"><span class="slider"></span></label>
         </div>
     </div>
 </header>
@@ -218,76 +62,73 @@
     <div class="semesters-container">
         <div class="semester-col" id="sem-1"><h3>Semestre 1</h3><div class="list"></div></div>
         <div class="semester-col" id="sem-2"><h3>Semestre 2</h3><div class="list"></div></div>
-        <div class="semester-col" id="sem-3"><h3>Semestre 3 (Maestría)</h3><div class="list"></div></div>
+        <div class="semester-col" id="sem-3"><h3>Semestre 3</h3><div class="list"></div></div>
     </div>
-
     <div class="ra-panel">
-        <h3 style="margin:0; text-align:center;">Resultados de Aprendizaje</h3>
+        <h4 style="margin:0; text-align:center;">Aporte a RA</h4>
         <div id="viz-area"></div>
     </div>
 </div>
-
 <div id="tooltip"></div>
 
 <script>
     const raColors = {
         "Entender": "#3b82f6", "Construir": "#10b981", "Escalar": "#f59e0b",
         "Liderar y Movilizar": "#ef4444", "Estrategia": "#8b5cf6",
-        "Comunicación": "#06b6d4", "Diseño": "#ec4899", 
-        "Integrar (C+L)": "#6366f1", "Integrar (E+C)": "#14b8a6",
-        "Convergencia (Todos)": "#64748b"
+        "Comunicación": "#06b6d4", "Diseño": "#ec4899", "Integrar (C+L)": "#6366f1",
+        "Integrar (E+C)": "#14b8a6", "Convergencia (Todos)": "#64748b"
     };
 
     let fullData = [];
 
+    // Carga de datos con limpieza de nombres de columnas
     d3.csv("matriz.csv").then(data => {
-        fullData = data;
-        
-        // Filtrar solo especializaciones para el combo
+        // Limpiamos espacios raros en las llaves (headers)
+        fullData = data.map(d => {
+            let cleanObj = {};
+            Object.keys(d).forEach(key => cleanObj[key.trim()] = d[key]);
+            return cleanObj;
+        });
+
         const progs = new Set();
-        data.forEach(d => {
-            d.Programa.split(',').forEach(p => {
+        fullData.forEach(d => {
+            if(d.Programa) d.Programa.split(',').forEach(p => {
                 let name = p.trim();
                 if(name.toLowerCase().includes("especialización")) progs.add(name);
             });
         });
 
-        const select = d3.select("#espSelect");
-        Array.from(progs).forEach(p => select.append("option").text(p).attr("value", p));
+        const select = d3.select("#espSelect").html("");
+        Array.from(progs).sort().forEach(p => select.append("option").text(p).attr("value", p));
 
         d3.select("#espSelect").on("change", update);
         d3.select("#maestriaToggle").on("change", update);
-
         update();
-    });
+    }).catch(err => console.error("Error cargando el CSV:", err));
 
     function update() {
         const selectedEsp = d3.select("#espSelect").property("value");
         const maestriaActive = d3.select("#maestriaToggle").property("checked");
 
-        // Filtrar cursos de la especialización seleccionada
-        let filtered = fullData.filter(d => d.Programa.includes(selectedEsp));
+        let filtered = fullData.filter(d => d.Programa && d.Programa.includes(selectedEsp));
 
-        // Si la maestría está activa, añadir cursos del semestre 3 (que son de Maestría)
         if (maestriaActive) {
-            const maestriaCursos = fullData.filter(d => 
-                d.Programa.includes("Maestría en Innovación y Tecnología") && +d.Semestre === 3
+            const mCursos = fullData.filter(d => 
+                d.Programa && d.Programa.includes("Maestría") && +d.Semestre === 3
             );
-            filtered = [...filtered, ...maestriaCursos];
+            filtered = [...filtered, ...mCursos];
         }
 
-        // Control visual del Semestre 3
         d3.select("#sem-3").classed("disabled", !maestriaActive);
 
-        // Renderizar cursos en columnas
         [1, 2, 3].forEach(s => {
             const container = d3.select(`#sem-${s} .list`).html("");
             filtered.filter(d => +d.Semestre === s).forEach(c => {
                 const ra = c["Competencia Principal (RA)"];
                 container.append("div")
                     .attr("class", "course-card")
-                    .style("border-left-color", raColors[ra] || "#ccc")
-                    .html(`<strong>${c["Nombre del Curso"]}</strong>${ra}`);
+                    .style("border-left-color", raColors[ra] || "#cbd5e1")
+                    .html(`<strong>${c["Nombre del Curso"]}</strong><span style="color:#64748b; font-size:10px">${ra || ''}</span>`);
             });
         });
 
@@ -296,38 +137,23 @@
 
     function renderRA(data) {
         const wrapper = d3.select("#viz-area").html("");
-        const counts = d3.rollups(data, v => v.length, d => d["Competencia Principal (RA)"]);
+        const counts = d3.rollups(data, v => v.length, d => d["Competencia Principal (RA)"]).filter(d => d[0]);
         const total = d3.sum(counts, d => d[1]);
 
-        counts.sort((a, b) => b[1] - a[1]);
-
-        counts.forEach(entry => {
+        counts.sort((a, b) => b[1] - a[1]).forEach(entry => {
             const [ra, count] = entry;
             const heightPerc = (count / total) * 100;
 
-            const block = wrapper.append("div")
+            wrapper.append("div")
                 .attr("class", "ra-block")
                 .style("height", `${heightPerc}%`)
                 .style("background-color", raColors[ra] || "#94a3b8")
-                .on("mouseover", (event) => {
-                    d3.select("#tooltip")
-                        .style("display", "block")
-                        .html(`<strong>${ra}</strong><br>Aplica en ${count} curso(s) de la ruta actual.`);
-                })
-                .on("mousemove", (event) => {
-                    d3.select("#tooltip")
-                        .style("left", (event.pageX + 15) + "px")
-                        .style("top", (event.pageY - 15) + "px");
-                })
-                .on("mouseout", () => d3.select("#tooltip").style("display", "none"));
-
-            block.append("div").attr("class", "num").text(count);
-            if (heightPerc > 10) { // Solo mostrar etiqueta si hay espacio
-                block.append("div").attr("class", "label").text(ra);
-            }
+                .on("mouseover", (e) => d3.select("#tooltip").style("display", "block").html(`<b>${ra}</b><br>${count} curso(s)`))
+                .on("mousemove", (e) => d3.select("#tooltip").style("left", (e.pageX+10)+"px").style("top", (e.pageY-10)+"px"))
+                .on("mouseout", () => d3.select("#tooltip").style("display", "none"))
+                .html(`<span class="num">${count}</span>${heightPerc > 8 ? `<span class="label">${ra}</span>` : ''}`);
         });
     }
 </script>
-
 </body>
 </html>
