@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Curricular Dinámico (V2)</title>
+    <title>Dashboard Curricular Dinámico</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <style>
         :root {
@@ -22,56 +22,82 @@
         }
 
         .controls { display: flex; align-items: center; gap: 35px; }
-        .control-group { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.9rem; }
+        .control-group { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.8rem; }
         
-        select { 
-            padding: 10px 15px; border-radius: 10px; border: 1px solid #e2e8f0; 
-            font-family: inherit; font-size: 0.9rem; background: #f8fafc; cursor: pointer;
+        select { padding: 8px 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-family: inherit; font-size: 0.85rem; cursor: pointer; }
+
+        /* Estilo Títulos */
+        .section-title { 
+            font-size: 0.7rem; font-weight: 800; letter-spacing: 0.05em; 
+            color: var(--muted); text-transform: uppercase; margin-bottom: 15px;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        .switch { position: relative; display: inline-block; width: 48px; height: 24px; }
+        /* Toggle */
+        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: var(--accent); }
-        input:checked + .slider:before { transform: translateX(24px); }
+        input:checked + .slider:before { transform: translateX(20px); }
 
-        .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 25px; min-height: 75vh; }
-        .semesters-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .main-layout { display: grid; grid-template-columns: 1fr 350px; gap: 25px; }
+        .semesters-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
         
-        .semester-col { background: rgba(255,255,255,0.5); border: 1px solid #e2e8f0; padding: 20px; border-radius: 16px; transition: all 0.4s ease; }
+        .semester-col { 
+            background: rgba(255,255,255,0.5); border: 1px solid #e2e8f0; 
+            padding: 15px; border-radius: 16px; transition: all 0.3s ease; 
+        }
         .semester-col.disabled { opacity: 0.15; filter: grayscale(1); pointer-events: none; }
-        .semester-col h3 { margin: 0 0 20px 0; font-size: 0.9rem; text-align: center; color: var(--muted); }
 
         .course-card { 
-            background: var(--card); padding: 15px; border-radius: 12px; margin-bottom: 12px; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 6px solid #ccc;
+            background: var(--card); padding: 12px; border-radius: 10px; margin-bottom: 10px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid #ccc;
+            transition: all 0.3s ease; opacity: 1;
         }
-        .course-card strong { display: block; font-size: 0.85rem; color: var(--primary); margin-bottom: 4px; }
-        .course-card span { font-size: 0.7rem; color: var(--muted); }
-
-        .ra-panel { background: var(--card); padding: 25px; border-radius: 16px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); height: 600px; display: flex; flex-direction: column; position: sticky; top: 25px; }
-        #viz-area { flex-grow: 1; display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
+        .course-card.dimmed { opacity: 0.1; transform: scale(0.95); }
+        .course-card.highlighted { transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-left-width: 10px; }
         
-        .ra-block { border-radius: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; cursor: pointer; transition: 0.3s; overflow: hidden; }
-        .ra-block:hover { filter: brightness(1.1); transform: scale(1.02); }
-        .ra-block .num { font-size: 1.3rem; font-weight: 700; }
-        .ra-block .label { font-size: 0.65rem; font-weight: 600; padding: 0 10px; text-transform: uppercase; }
+        .course-card strong { display: block; font-size: 0.8rem; color: var(--primary); margin-bottom: 3px; line-height: 1.2; }
+        .course-card span { font-size: 0.65rem; color: var(--muted); font-weight: 600; }
 
-        #tooltip { position: absolute; background: var(--primary); color: white; padding: 12px; border-radius: 8px; font-size: 0.8rem; display: none; pointer-events: none; z-index: 9999; max-width: 250px; box-shadow: 0 10px 15px rgba(0,0,0,0.2); }
+        /* RA Panel */
+        .ra-panel { 
+            background: var(--card); padding: 20px; border-radius: 16px; 
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); 
+            height: calc(100vh - 180px); display: flex; flex-direction: column; position: sticky; top: 25px;
+        }
+        #viz-area { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; margin-top: 5px; }
+        
+        .ra-block { 
+            border-radius: 8px; display: flex; flex-direction: row; justify-content: flex-start; 
+            align-items: center; padding: 0 15px; cursor: pointer; transition: 0.3s; 
+            overflow: hidden; gap: 12px; border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        /* Círculo de número */
+        .ra-circle {
+            width: 28px; height: 28px; background: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.9rem; flex-shrink: 0;
+        }
+
+        .ra-block .label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; text-align: left; line-height: 1.1; }
+
+        #tooltip { position: absolute; background: var(--primary); color: white; padding: 12px; border-radius: 8px; font-size: 0.75rem; display: none; pointer-events: none; z-index: 9999; max-width: 220px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h2 style="margin:0; font-size:1.3rem;">Visualizador Curricular Dinámico</h2>
+    <h2 style="margin:0; font-size:1.2rem; font-weight:800;">Currículo Dinámico MI&T</h2>
     <div class="controls">
         <div class="control-group">
-            <label>Programa</label>
-            <select id="espSelect"><option>Cargando matriz...</option></select>
+            <label>ESPECIALIZACIÓN</label>
+            <select id="espSelect"><option>Cargando...</option></select>
         </div>
         <div class="control-group">
-            <span>Maestría</span>
+            <span>MAESTRÍA</span>
             <label class="switch"><input type="checkbox" id="maestriaToggle"><span class="slider"></span></label>
         </div>
     </div>
@@ -79,12 +105,21 @@
 
 <div class="main-layout">
     <div class="semesters-container">
-        <div class="semester-col" id="sem-1"><h3>SEMESTRE 1</h3><div class="list"></div></div>
-        <div class="semester-col" id="sem-2"><h3>SEMESTRE 2</h3><div class="list"></div></div>
-        <div class="semester-col" id="sem-3"><h3>SEMESTRE 3</h3><div class="list"></div></div>
+        <div class="semester-col" id="sem-1">
+            <div class="section-title"><span>SEMESTRE 1</span><small class="count"></small></div>
+            <div class="list"></div>
+        </div>
+        <div class="semester-col" id="sem-2">
+            <div class="section-title"><span>SEMESTRE 2</span><small class="count"></small></div>
+            <div class="list"></div>
+        </div>
+        <div class="semester-col" id="sem-3">
+            <div class="section-title"><span>SEMESTRE 3</span><small class="count"></small></div>
+            <div class="list"></div>
+        </div>
     </div>
     <div class="ra-panel">
-        <h4 style="margin:0; text-align:center; color:var(--muted); font-size:0.8rem; letter-spacing:1px;">RESULTADOS DE APRENDIZAJE</h4>
+        <div class="section-title">RESULTADOS DE APRENDIZAJE</div>
         <div id="viz-area"></div>
     </div>
 </div>
@@ -95,20 +130,17 @@
     let colorScale;
 
     d3.csv("matriz.csv").then(data => {
-        // 1. Limpieza universal de datos
         fullData = data.map(d => {
             let clean = {};
             Object.keys(d).forEach(k => clean[k.trim()] = d[k] ? d[k].trim() : "");
             return clean;
         });
 
-        // 2. Generación dinámica de colores para CUALQUIER cantidad de RA
         const uniqueRAs = [...new Set(fullData.map(d => d["Titulo(RA)"]))].filter(d => d !== "");
         colorScale = d3.scaleOrdinal()
             .domain(uniqueRAs)
             .range(d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), uniqueRAs.length).reverse());
 
-        // 3. Población dinámica de Programas (Solo Especializaciones)
         const progs = new Set();
         fullData.forEach(d => {
             if (d.Programa) d.Programa.split(',').forEach(p => {
@@ -122,7 +154,6 @@
 
         d3.select("#espSelect").on("change", update);
         d3.select("#maestriaToggle").on("change", update);
-
         update();
     });
 
@@ -131,22 +162,22 @@
         const maestriaActive = d3.select("#maestriaToggle").property("checked");
 
         let filtered = fullData.filter(d => d.Programa.includes(selectedEsp));
-
         if (maestriaActive) {
-            const mCursos = fullData.filter(d => 
-                d.Programa.toLowerCase().includes("maestría") && +d.Semestre === 3
-            );
-            filtered = [...filtered, ...mCursos];
+            filtered = [...filtered, ...fullData.filter(d => d.Programa.toLowerCase().includes("maestría") && +d.Semestre === 3)];
         }
 
         d3.select("#sem-3").classed("disabled", !maestriaActive);
 
         [1, 2, 3].forEach(s => {
+            const semCursos = filtered.filter(d => +d.Semestre === s);
+            d3.select(`#sem-${s} .count`).text(`${semCursos.length} CURSOS`);
+            
             const container = d3.select(`#sem-${s} .list`).html("");
-            filtered.filter(d => +d.Semestre === s).forEach(c => {
+            semCursos.forEach(c => {
                 const ra = c["Titulo(RA)"];
                 container.append("div")
                     .attr("class", "course-card")
+                    .attr("data-ra", ra)
                     .style("border-left-color", colorScale(ra))
                     .html(`<strong>${c["Curso"]}</strong><span>${ra}</span>`);
             });
@@ -163,24 +194,36 @@
         raGroups.sort((a, b) => b[1].length - a[1].length).forEach(group => {
             const [title, courses] = group;
             const count = courses.length;
-            const detail = courses[0]["Detalle(RA)"] || "Sin detalle disponible";
+            const detail = courses[0]["Detalle(RA)"] || "Sin detalle";
             const h = (count / total) * 100;
+            const baseColor = colorScale(title);
+            const darkColor = d3.hsl(baseColor).darker(1.5); // Color más oscuro para el texto
 
             const block = wrapper.append("div")
                 .attr("class", "ra-block")
                 .style("height", `${h}%`)
-                .style("background-color", colorScale(title))
+                .style("background-color", baseColor)
+                .style("color", darkColor)
                 .on("mouseover", (e) => {
-                    d3.select("#tooltip").style("display", "block")
-                      .html(`<strong>${title}</strong><br><small>${detail}</small>`);
+                    // Tooltip
+                    d3.select("#tooltip").style("display", "block").html(`<strong>${title}</strong><br>${detail}`);
+                    // Resaltado de cursos
+                    d3.selectAll(".course-card").classed("dimmed", true);
+                    d3.selectAll(`.course-card[data-ra="${title}"]`).classed("dimmed", false).classed("highlighted", true);
                 })
                 .on("mousemove", (e) => {
                     d3.select("#tooltip").style("left", (e.pageX + 15) + "px").style("top", (e.pageY - 15) + "px");
                 })
-                .on("mouseout", () => d3.select("#tooltip").style("display", "none"));
+                .on("mouseout", () => {
+                    d3.select("#tooltip").style("display", "none");
+                    d3.selectAll(".course-card").classed("dimmed", false).classed("highlighted", false);
+                });
 
-            block.append("div").attr("class", "num").text(count);
-            if (h > 8) block.append("div").attr("class", "label").text(title);
+            block.append("div").attr("class", "ra-circle")
+                .style("color", darkColor)
+                .text(count);
+            
+            block.append("div").attr("class", "label").text(title);
         });
     }
 </script>
