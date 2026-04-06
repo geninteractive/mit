@@ -1,44 +1,43 @@
-matriz
-Semestre;Curso;Titulo(RA);Detalle(RA);Programa
-1;Cruzando tus Límites;Liderar y Movilizar;Articular personas, equipos y stakeholders para hacer posible la innovación, mediante liderazgo, comunicación, gestión cultural, colaboración interdisciplinaria y facilitación de la adopción del cambio.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-1;Insights de Usuario y Mercado;Entender;Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-1;Vanguardia Tecnológica para Innovar;Entender;Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-1;Identificación de Oportunidades y Briefing;Entender;Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-1;Innovación en Servicios;Construir;Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-1;Tecnologías Generativas 1;Construir;Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-2;Desarrollando la Gran Idea;Construir;Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-2;Tecnologías Generativas 2;Construir;Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-2;Innovación en modelos de negocio;Escalar;Consolidar y expandir soluciones mediante modelos de negocio, criterios financieros, capacidades operativas, métricas e integración organizacional, para sostener su impacto en el tiempo.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-2;Gerencia escalada de equipo;Escalar;Consolidar y expandir soluciones mediante modelos de negocio, criterios financieros, capacidades operativas, métricas e integración organizacional, para sostener su impacto en el tiempo.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-2;Análisis Financiero [Electiva];Escalar;Consolidar y expandir soluciones mediante modelos de negocio, criterios financieros, capacidades operativas, métricas e integración organizacional, para sostener su impacto en el tiempo.;Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-2;Proyecto Integrador;Integrar (C+L);Proyecto (C+L);Especialización en Gestión de innovación, Maestría en Innovación y Tecnología
-3;Innovación Global y Estrategia;Estrategia;Orientar decisiones de innovación y tecnología mediante visión de futuro, priorización, lectura del entorno, gestión del riesgo y alineación con propósitos organizacionales y sociales.;Maestría en Innovación y Tecnología
-3;* Estrategia de Innovación y Tech;Estrategia;Orientar decisiones de innovación y tecnología mediante visión de futuro, priorización, lectura del entorno, gestión del riesgo y alineación con propósitos organizacionales y sociales.;Maestría en Innovación y Tecnología
-3;Análisis financiero;Estrategia;Orientar decisiones de innovación y tecnología mediante visión de futuro, priorización, lectura del entorno, gestión del riesgo y alineación con propósitos organizacionales y sociales.;Maestría en Innovación y Tecnología
-3;Haciéndolo Posible;Liderar y Movilizar;Articular personas, equipos y stakeholders para hacer posible la innovación, mediante liderazgo, comunicación, gestión cultural, colaboración interdisciplinaria y facilitación de la adopción del cambio.;Maestría en Innovación y Tecnología
-3;* Liderazgo, Cultura y Cambio;Liderar y Movilizar;Articular personas, equipos y stakeholders para hacer posible la innovación, mediante liderazgo, comunicación, gestión cultural, colaboración interdisciplinaria y facilitación de la adopción del cambio.;Maestría en Innovación y Tecnología
-3;Proyecto Integrador Final;Convergencia (Todos);NA;Maestría en Innovación y Tecnología
-3;Experiencia Internacional;Convergencia (Todos);NA;Maestría en Innovación y Tecnología
-1;Fundamentos UX;Comunicación;Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos;Especialización en UX
-1;Metodos de investigación;Comunicación;Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos;Especialización en UX
-1;Metodos cuantitativos;Comunicación;Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos;Especialización en UX
-1;Usabilidad;Comunicación;Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos;Especialización en UX
-1;Accesibilidad;Comunicación;Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos;Especialización en UX
-1;Arquitectura;Comunicación;Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos;Especialización en UX
-2;Diseño UI;Diseño;Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX;
-2;Psicología Cognitiva;Diseño;Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX;Especialización en UX
-2;Prototipado;Diseño;Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX;Especialización en UX
-2;Sistemas de diseño;Diseño;Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX;Especialización en UX
-2;UX Writing;Diseño;Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX;Especialización en UX
-1;Curso 1;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-1;Curso 2;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-1;Curso 3;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-1;Curso 4;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-1;Curso 5;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-1;Curso 6;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-2;Curso 7;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-2;Curso 8;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-2;Curso 9;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-2;Curso 10;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-2;Curso 11;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
-2;Curso 12;RA Ejemplo;Detalle RA.Ejemplo;Especialización en Producto
+Semestre,Curso,Antes,Titulo(RA),Detalle(RA),Programa
+1,Cruzando tus Límites,,Liderar y Movilizar,"Articular personas, equipos y stakeholders para hacer posible la innovación, mediante liderazgo, comunicación, gestión cultural, colaboración interdisciplinaria y facilitación de la adopción del cambio.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+1,Insights de Usuario y Mercado,,Entender,"Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+1,Vanguardia Tecnológica para Innovar,,Entender,"Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+1,Identificación de Oportunidades y Briefing,Bases de un reto de Innovación,Entender,"Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+1,Innovación en Servicios,,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+1,Tecnologías Generativas 1,Nuevo,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+2,Tecnologías Generativas 2,Nuevo,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+2,Desarrollando la Gran Idea,,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+2,Innovación en modelos de negocio,Evaluando Factibilidad,Escalar,"Consolidar y expandir soluciones mediante modelos de negocio, criterios financieros, capacidades operativas, métricas e integración organizacional, para sostener su impacto en el tiempo.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+2,Gerencia escalada de equipo,Nuevo,Escalar,"Consolidar y expandir soluciones mediante modelos de negocio, criterios financieros, capacidades operativas, métricas e integración organizacional, para sostener su impacto en el tiempo.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+2,Growth,Nuevo,Escalar,Proyecto (E+C),"Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+2,Proyecto Integrador 1,Aplicación de un Reto de Innovación,Convergencia (Todos),Proyecto (C+L),"Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+3,Innovación Global y Estrategia,,Estrategia,"Orientar decisiones de innovación y tecnología mediante visión de futuro, priorización, lectura del entorno, gestión del riesgo y alineación con propósitos organizacionales y sociales.",Maestría en Innovación y Tecnología
+3,Estrategia de Innovación y Tech,Nuevo,Estrategia,"Orientar decisiones de innovación y tecnología mediante visión de futuro, priorización, lectura del entorno, gestión del riesgo y alineación con propósitos organizacionales y sociales.",Maestría en Innovación y Tecnología
+3,Análisis financiero,Analisis financiero de la Innovación,Estrategia,"Orientar decisiones de innovación y tecnología mediante visión de futuro, priorización, lectura del entorno, gestión del riesgo y alineación con propósitos organizacionales y sociales.",Maestría en Innovación y Tecnología
+3,Haciéndolo Posible,,Liderar y Movilizar,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.","Especialización en Gestión de innovación, Maestría en Innovación y Tecnología"
+3,"Liderazgo, Cultura y Cambio",Liderazgo en innovación,Liderar y Movilizar,"Articular personas, equipos y stakeholders para hacer posible la innovación, mediante liderazgo, comunicación, gestión cultural, colaboración interdisciplinaria y facilitación de la adopción del cambio.",Maestría en Innovación y Tecnología
+3,Proyecto integrador Final,,Convergencia (Todos),"Consolidar y expandir soluciones mediante modelos de negocio, criterios financieros, capacidades operativas, métricas e integración organizacional, para sostener su impacto en el tiempo.",Maestría en Innovación y Tecnología
+3,Experiencia Internacional,,Convergencia (Todos),NA,Maestría en Innovación y Tecnología
+1,Fundamentos UX,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",
+1,Metodos de investigación,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
+1,Metodos cuantitativos,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
+1,Usabilidad,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
+1,Accesibilidad,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
+1,Arquitectura,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
+2,Diseño UI,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",
+2,Psicología Cognitiva,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",Especialización en UX
+2,Prototipado,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",Especialización en UX
+2,Sistemas de diseño,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",Especialización en UX
+2,UX Writing,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",Especialización en UX
+1,Curso 1,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+1,Curso 2,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+1,Curso 3,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+1,Curso 4,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+1,Curso 5,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+1,Curso 6,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+2,Curso 7,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+2,Curso 8,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+2,Curso 9,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+2,Curso 10,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+2,Curso 11,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
+2,Curso 12,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
