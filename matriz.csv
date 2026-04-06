@@ -18,17 +18,20 @@ Semestre,Curso,Antes,Titulo(RA),Detalle(RA),Programa
 3,"Liderazgo, Cultura y Cambio",Liderazgo en innovación,Liderar y Movilizar,"Articular personas, equipos y stakeholders para hacer posible la innovación, mediante liderazgo, comunicación, gestión cultural, colaboración interdisciplinaria y facilitación de la adopción del cambio.",Maestría en Innovación y Tecnología
 3,Proyecto integrador Final,,Convergencia (Todos),"Consolidar y expandir soluciones mediante modelos de negocio, criterios financieros, capacidades operativas, métricas e integración organizacional, para sostener su impacto en el tiempo.",Maestría en Innovación y Tecnología
 3,Experiencia Internacional,,Convergencia (Todos),NA,Maestría en Innovación y Tecnología
-1,Fundamentos UX,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",
-1,Metodos de investigación,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
-1,Metodos cuantitativos,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
-1,Usabilidad,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
-1,Accesibilidad,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
-1,Arquitectura,,Comunicación,"Interpretar las necesidades y propósitos de los usuarios, teniendo en cuenta los contextos comunicativos",Especialización en UX
-2,Diseño UI,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",
-2,Psicología Cognitiva,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",Especialización en UX
-2,Prototipado,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",Especialización en UX
-2,Sistemas de diseño,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",Especialización en UX
-2,UX Writing,,Diseño,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",Especialización en UX
+1,Fundamentos UX,,Entender,"Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.",Especialización en UX
+1,Metodos de investigación,,Entender,"Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.",Especialización en UX
+1,Metodos cuantitativos,,Entender,"Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.",Especialización en UX
+1,Usabilidad,,Entender,"Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.",Especialización en UX
+1,Arquitectura,,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.",Especialización en UX
+1,UX+IA,,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.",Especialización en UX
+1,Proyecto Integrador I,,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.",Especialización en UX
+2,Psicología Cognitiva,,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.",Especialización en UX
+2,Accesibilidad,,Entender,"Analizar problemas, contextos, usuarios, mercados, tecnologías y señales de cambio mediante enfoques sistémicos y de innovación, para identificar oportunidades relevantes de generación de valor.",Especialización en UX
+2,Diseño UI,,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.",Especialización en UX
+2,Prototipado,,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.",Especialización en UX
+2,Sistemas de diseño,,Construir,"Consolidar y expandir soluciones mediante modelos de negocio, criterios financieros, capacidades operativas, métricas e integración organizacional, para sostener su impacto en el tiempo.",Especialización en UX
+2,DesignOps,,Escalar,"Construir una solución de interacción, estructurada, factible, viable y deseable con el fin de mejorar la UX",Especialización en UX
+2,Proyecto Integrador II,,Construir,"Diseñar, desarrollar, prototipar y validar soluciones en productos, servicios, procesos o experiencias, integrando metodologías de innovación y uso pertinente de tecnología.",Especialización en UX
 1,Curso 1,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
 1,Curso 2,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
 1,Curso 3,,RA Ejemplo,Detalle RA.Ejemplo,Especialización en Producto
