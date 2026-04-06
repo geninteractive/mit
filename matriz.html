@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>(V4) Dashboard Curricular Dinámico</title>
+    <title>Dashboard Curricular Dinámico V.1</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -22,18 +22,16 @@
         }
 
         .controls { display: flex; align-items: center; gap: 35px; }
-        .control-group { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.8rem; }
+        .control-group { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.7rem; }
         
         select { padding: 8px 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-family: inherit; font-size: 0.85rem; cursor: pointer; }
 
-        /* Estilo Títulos */
         .section-title { 
             font-size: 0.7rem; font-weight: 800; letter-spacing: 0.05em; 
             color: var(--muted); text-transform: uppercase; margin-bottom: 15px;
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        /* Toggle */
         .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .4s; border-radius: 34px; }
@@ -44,44 +42,33 @@
         .main-layout { display: grid; grid-template-columns: 1fr 350px; gap: 25px; }
         .semesters-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
         
-        .semester-col { 
-            background: rgba(255,255,255,0.5); border: 1px solid #e2e8f0; 
-            padding: 15px; border-radius: 16px; transition: all 0.3s ease; 
-        }
+        .semester-col { background: rgba(255,255,255,0.5); border: 1px solid #e2e8f0; padding: 15px; border-radius: 16px; transition: all 0.3s ease; }
         .semester-col.disabled { opacity: 0.15; filter: grayscale(1); pointer-events: none; }
 
         .course-card { 
             background: var(--card); padding: 12px; border-radius: 10px; margin-bottom: 10px; 
             box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid #ccc;
-            transition: all 0.3s ease; opacity: 1;
+            transition: all 0.3s ease;
         }
-        .course-card.dimmed { opacity: 0.1; transform: scale(0.95); }
-        .course-card.highlighted { transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-left-width: 10px; }
+        .course-card.dimmed { opacity: 0.15; transform: scale(0.98); }
+        .course-card.highlighted { transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         
-        .course-card strong { display: block; font-size: 0.8rem; color: var(--primary); margin-bottom: 3px; line-height: 1.2; }
-        .course-card span { font-size: 0.65rem; color: var(--muted); font-weight: 600; }
+        .course-card strong { font-size: 0.8rem; color: var(--primary); line-height: 1.2; }
+        .course-card .old-name { font-size: 0.65rem; color: var(--muted); font-weight: 400; opacity: 0.8; margin-left: 4px; }
+        .course-card span.ra-tag { display: block; font-size: 0.65rem; color: var(--muted); font-weight: 600; margin-top: 4px; }
 
-        /* RA Panel */
-        .ra-panel { 
-            background: var(--card); padding: 20px; border-radius: 16px; 
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); 
-            height: calc(100vh - 180px); display: flex; flex-direction: column; position: sticky; top: 25px;
+        /* Estilo para MOOCs */
+        .mooc-container {
+            grid-column: span 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+            background: #475569; padding: 10px; border-radius: 10px; color: white; margin-top: 5px;
         }
+        .mooc-item { font-size: 0.7rem; font-weight: 700; text-align: center; border: 1px dashed rgba(255,255,255,0.3); padding: 5px; border-radius: 4px; }
+
+        .ra-panel { background: var(--card); padding: 20px; border-radius: 16px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); height: calc(100vh - 180px); display: flex; flex-direction: column; position: sticky; top: 25px; }
         #viz-area { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; margin-top: 5px; }
         
-        .ra-block { 
-            border-radius: 8px; display: flex; flex-direction: row; justify-content: flex-start; 
-            align-items: center; padding: 0 15px; cursor: pointer; transition: 0.3s; 
-            overflow: hidden; gap: 12px; border: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        /* Círculo de número */
-        .ra-circle {
-            width: 28px; height: 28px; background: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 0.9rem; flex-shrink: 0;
-        }
-
+        .ra-block { border-radius: 8px; display: flex; flex-direction: row; justify-content: flex-start; align-items: center; padding: 0 15px; cursor: pointer; transition: 0.3s; overflow: hidden; gap: 12px; }
+        .ra-circle { width: 28px; height: 28px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; flex-shrink: 0; box-shadow: inset 0 0 0 2px rgba(0,0,0,0.05); }
         .ra-block .label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; text-align: left; line-height: 1.1; }
 
         #tooltip { position: absolute; background: var(--primary); color: white; padding: 12px; border-radius: 8px; font-size: 0.75rem; display: none; pointer-events: none; z-index: 9999; max-width: 220px; }
@@ -93,8 +80,8 @@
     <h2 style="margin:0; font-size:1.2rem; font-weight:800;">Currículo Dinámico MI&T</h2>
     <div class="controls">
         <div class="control-group">
-            <label></label>
-            <select id="espSelect"><option>Cargando...</option></select>
+            <label>ESPECIALIZACIÓN</label>
+            <select id="espSelect"></select>
         </div>
         <div class="control-group">
             <span>MAESTRÍA</span>
@@ -105,18 +92,9 @@
 
 <div class="main-layout">
     <div class="semesters-container">
-        <div class="semester-col" id="sem-1">
-            <div class="section-title"><span>SEMESTRE 1</span><small class="count"></small></div>
-            <div class="list"></div>
-        </div>
-        <div class="semester-col" id="sem-2">
-            <div class="section-title"><span>SEMESTRE 2</span><small class="count"></small></div>
-            <div class="list"></div>
-        </div>
-        <div class="semester-col" id="sem-3">
-            <div class="section-title"><span>SEMESTRE 3</span><small class="count"></small></div>
-            <div class="list"></div>
-        </div>
+        <div class="semester-col" id="sem-1"><div class="section-title"><span>SEMESTRE 1</span><small class="count"></small></div><div class="list"></div></div>
+        <div class="semester-col" id="sem-2"><div class="section-title"><span>SEMESTRE 2</span><small class="count"></small></div><div class="list"></div></div>
+        <div class="semester-col" id="sem-3"><div class="section-title"><span>SEMESTRE 3</span><small class="count"></small></div><div class="list"></div></div>
     </div>
     <div class="ra-panel">
         <div class="section-title">RESULTADOS DE APRENDIZAJE</div>
@@ -129,6 +107,14 @@
     let fullData = [];
     let colorScale;
 
+    // Función para garantizar contraste WCAG 2.1 AA
+    function getContrastColor(hexColor) {
+        const color = d3.rgb(hexColor);
+        // Formula de luminancia relativa
+        const yiq = (color.r * 299 + color.g * 587 + color.b * 114) / 1000;
+        return (yiq >= 145) ? "#1e293b" : "#ffffff"; // Oscuro para fondos claros, blanco para oscuros
+    }
+
     d3.csv("matriz.csv").then(data => {
         fullData = data.map(d => {
             let clean = {};
@@ -137,15 +123,15 @@
         });
 
         const uniqueRAs = [...new Set(fullData.map(d => d["Titulo(RA)"]))].filter(d => d !== "");
+        // Escala con mayor saturación para facilitar contraste
         colorScale = d3.scaleOrdinal()
             .domain(uniqueRAs)
-            .range(d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), uniqueRAs.length).reverse());
+            .range(d3.quantize(t => d3.interpolateHcl("#2563eb", "#d946ef")(t), uniqueRAs.length));
 
         const progs = new Set();
         fullData.forEach(d => {
             if (d.Programa) d.Programa.split(',').forEach(p => {
-                let name = p.trim();
-                if (name.toLowerCase().includes("especialización")) progs.add(name);
+                if (p.trim().toLowerCase().includes("especialización")) progs.add(p.trim());
             });
         });
 
@@ -160,6 +146,7 @@
     function update() {
         const selectedEsp = d3.select("#espSelect").property("value");
         const maestriaActive = d3.select("#maestriaToggle").property("checked");
+        const isGestionInno = selectedEsp.toLowerCase().includes("especialización en gestión de la innovación");
 
         let filtered = fullData.filter(d => d.Programa.includes(selectedEsp));
         if (maestriaActive) {
@@ -175,12 +162,20 @@
             const container = d3.select(`#sem-${s} .list`).html("");
             semCursos.forEach(c => {
                 const ra = c["Titulo(RA)"];
+                const oldName = c["Antes"] ? `<span class="old-name">(${c["Antes"]})</span>` : "";
+                
                 container.append("div")
                     .attr("class", "course-card")
                     .attr("data-ra", ra)
                     .style("border-left-color", colorScale(ra))
-                    .html(`<strong>${c["Curso"]}</strong><span>${ra}</span>`);
+                    .html(`<strong>${c["Curso"]}</strong>${oldName}<span class="ra-tag">${ra}</span>`);
             });
+
+            // Lógica MOOC para Semestre 1
+            if (s === 1 && !isGestionInno) {
+                container.append("div").attr("class", "mooc-container")
+                    .html(`<div class="mooc-item">MOOC S1</div><div class="mooc-item">MOOC S2</div>`);
+            }
         });
 
         renderViz(filtered);
@@ -194,20 +189,17 @@
         raGroups.sort((a, b) => b[1].length - a[1].length).forEach(group => {
             const [title, courses] = group;
             const count = courses.length;
-            const detail = courses[0]["Detalle(RA)"] || "Sin detalle";
             const h = (count / total) * 100;
-            const baseColor = colorScale(title);
-            const darkColor = d3.hsl(baseColor).darker(1.5); // Color más oscuro para el texto
+            const bgColor = colorScale(title);
+            const textColor = getContrastColor(bgColor);
 
             const block = wrapper.append("div")
                 .attr("class", "ra-block")
                 .style("height", `${h}%`)
-                .style("background-color", baseColor)
-                .style("color", darkColor)
+                .style("background-color", bgColor)
+                .style("color", textColor)
                 .on("mouseover", (e) => {
-                    // Tooltip
-                    d3.select("#tooltip").style("display", "block").html(`<strong>${title}</strong><br>${detail}`);
-                    // Resaltado de cursos
+                    d3.select("#tooltip").style("display", "block").html(`<strong>${title}</strong><br>${courses[0]["Detalle(RA)"]}`);
                     d3.selectAll(".course-card").classed("dimmed", true);
                     d3.selectAll(`.course-card[data-ra="${title}"]`).classed("dimmed", false).classed("highlighted", true);
                 })
@@ -220,7 +212,7 @@
                 });
 
             block.append("div").attr("class", "ra-circle")
-                .style("color", darkColor)
+                .style("color", d3.hsl(bgColor).darker(2))
                 .text(count);
             
             block.append("div").attr("class", "label").text(title);
