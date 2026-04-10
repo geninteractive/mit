@@ -120,8 +120,7 @@
         return (yiq >= 150) ? "#0f172a" : "#ffffff";
     }
 
-    d3.csv("matriz.csv").then(data => {
-        fullData = data.map(d => {
+d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTMNM50m08hLj4gXcjUhETd9aFM_6JA0EomLNIUI6YShI0L6hEQyofSmoCJH52SwaxaND5iu8dYCdgT/pub?gid=1651476285&single=true&output=csv").then(data => {        fullData = data.map(d => {
             let clean = {};
             Object.keys(d).forEach(k => clean[k.trim()] = d[k] ? d[k].trim() : "");
             return clean;
